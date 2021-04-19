@@ -1,0 +1,7 @@
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/install/strip.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/install/local.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/install.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/list_install_components.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/rebuild_cache.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/edit_cache.dir
+/home/eric/Cinder/my-projects/final-project-erichung64/Build/CMakeFiles/FinalProject.dir
