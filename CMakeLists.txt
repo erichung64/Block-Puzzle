@@ -40,7 +40,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE tests/test_main.cpp app/pool-app.cpp)
+    add_library(catch2 INTERFACE tests/test_main.cpp app/block-app.cpp)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -52,7 +52,7 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND CORE_SOURCE_FILES src/core/table.cpp)
 
 list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
-        src/visualizer/pool_app.cpp)
+        src/visualizer/block_app.cpp)
 
 list(APPEND TEST_FILES)
 
@@ -62,7 +62,7 @@ target_include_directories(pool PRIVATE include)
 ci_make_app(
         APP_NAME        pool-app
         CINDER_PATH     ${CINDER_PATH}
-        SOURCES         app/pool-app.cpp ${SOURCE_FILES}
+        SOURCES app/block-app.cpp ${SOURCE_FILES}
         INCLUDES        include
 )
 

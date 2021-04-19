@@ -8,15 +8,16 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
-namespace pool_app {
+namespace block_app {
     namespace visualizer {
-        class PoolApp : public ci::app::App{
+        class BlockApp : public ci::app::App{
         public:
-        PoolApp();
+        BlockApp();
 
         void draw() override;
         void update() override;
-
+        const int kWindowSize = 875;
+        const int kMargin = 100;
         private:
 
         };

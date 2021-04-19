@@ -1,29 +1,27 @@
-#Project Proposal - 8 Ball Pool
+#Project Proposal - BlockPuzzle
 ###Objective of the Game
-This project is a recreation of the popular iMessage game 8 Ball Pool. In this game there are two players who play the 
-standard game of pool with physics simulations.
+This project is a recreation of the popular mobile game Block Puzzle. In this game, 
+a player tries to attain a high score by arranging tetris blocks to fill a horizontal row
+or column. Once a column, row, or multiple columns and rows are filled, the game clears that section and adds to the player's score.
+The game ends once the player has no places to put the blocks. 
 
 ###Implementation
-This project will be using Cinder and OpenGL to recreate the game of 8 ball
-pool. The cue can be controlled by the mouse, and clicking and dragging to the opposite
-direction to control its speed and direction. If more time is available, there can be
-implementations of different cues, spins, and more features like wireless multiplayer to the game. 
+This project will be using Cinder to recreate the game of Block Puzzle. 
 
 ###Timeline
-* Week 1 
-    * Implement the physics engine
-    * Design and display a simple table and balls that interact correctly
+* Week 1
+    * Design and display a 9x9 board
+    * Design pieces
     
 * Week 2
-    * Create 2 players and cues
-    * implement the rules of 8 ball pool
+    * Allow user to put pieces on board
+    * Generate 3 new random pieces every 3 placements
     
 * Week 3
-    * Create a timer system
-    * Add different cues with different abilities
-    * Add spin behavior
-    * Tournament mode with brackets
-    * possibly create backend for server to establish multiplayer
+    * Create loss condition
+    * Add different colors, get creative with design
+    * Add animations
+    * Save high scores
 
 
 
