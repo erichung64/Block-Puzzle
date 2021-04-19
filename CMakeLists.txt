@@ -40,7 +40,7 @@ FetchContent_Declare(
 FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
-    add_library(catch2 INTERFACE tests/test_main.cpp app/block-app.cpp)
+    add_library(catch2 INTERFACE tests/test_main.cpp app/block-app.cpp include/visualizer/grid.h src/visualizer/grid.cpp)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 

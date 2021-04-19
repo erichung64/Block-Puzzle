@@ -3,7 +3,7 @@
 This project is a recreation of the popular mobile game Block Puzzle. In this game, 
 a player tries to attain a high score by arranging tetris blocks to fill a horizontal row
 or column. Once a column, row, or multiple columns and rows are filled, the game clears that section and adds to the player's score.
-The game ends once the player has no places to put the blocks. 
+The game ends once the player has no more places to put the blocks. 
 
 ###Implementation
 This project will be using Cinder to recreate the game of Block Puzzle. 
@@ -16,6 +16,7 @@ This project will be using Cinder to recreate the game of Block Puzzle.
 * Week 2
     * Allow user to put pieces on board
     * Generate 3 new random pieces every 3 placements
+    * Clears board after row or column has been filled
     
 * Week 3
     * Create loss condition
