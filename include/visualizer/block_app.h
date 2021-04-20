@@ -21,7 +21,7 @@ namespace block_app {
 
             const double kWindowSize = 875;
             const double kMargin = 100;
-            const double kImageDimension = 28;
+            const double kImageDimension = 9;
 
         private:
             Grid grid_;

@@ -5,7 +5,7 @@ namespace block_app {
     namespace visualizer {
 
         BlockApp::BlockApp()
-                : grid_(kImageDimension,kWindowSize - 2 * kMargin) {
+                : grid_(glm::vec2(kMargin, kMargin), kImageDimension, kWindowSize - 2 * kMargin) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
         }
 
@@ -14,10 +14,6 @@ namespace block_app {
             ci::gl::clear(background_color);
 
             grid_.Draw();
-
-            ci::gl::drawStringCentered(
-                    "Press Delete to clear the sketchpad. Press Enter to make a prediction.",
-                    glm::vec2(kWindowSize / 2, kMargin / 2), ci::Color("black"));
 
         }
 

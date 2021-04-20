@@ -6,8 +6,9 @@ namespace block_app {
 
         using glm::vec2;
 
-        Grid::Grid(double num_pixels_per_side, double sketchpad_size)
-                : num_pixels_per_side_(num_pixels_per_side),
+        Grid::Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size)
+                : top_left_corner_(top_left_corner),
+                  num_pixels_per_side_(num_pixels_per_side),
                   pixel_side_length_(sketchpad_size / num_pixels_per_side) {
             for (size_t row = 0; row < (size_t)num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < (size_t)num_pixels_per_side_; ++col) {
