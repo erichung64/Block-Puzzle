@@ -56,18 +56,18 @@ list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
 
 list(APPEND TEST_FILES)
 
-add_executable(pool app/Main.cpp ${CORE_SOURCE_FILES})
-target_include_directories(pool PRIVATE include)
+add_executable(block app/Main.cpp ${CORE_SOURCE_FILES})
+target_include_directories(block PRIVATE include)
 
 ci_make_app(
-        APP_NAME        pool-app
+        APP_NAME        block-app
         CINDER_PATH     ${CINDER_PATH}
         SOURCES app/block-app.cpp ${SOURCE_FILES}
         INCLUDES        include
 )
 
 ci_make_app(
-        APP_NAME        test-pool
+        APP_NAME        test-block
         CINDER_PATH     ${CINDER_PATH}
         SOURCES         tests/test_main.cpp ${SOURCE_FILES} ${TEST_FILES}
         INCLUDES        include

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "cinder/gl/gl.h"
-
+#include <vector>
 namespace block_app {
 
     namespace visualizer {
@@ -19,8 +19,7 @@ namespace block_app {
              * @param sketchpad_size      the side length of the sketchpad, measured in
              *                            screen pixels
              */
-            Grid(const glm::vec2& top_left_corner, size_t num_pixels_per_side,
-                      double sketchpad_size);
+            Grid(double num_pixels_per_side, double sketchpad_size);
 
             /**
              * Displays the current state of the sketchpad in the Cinder application.
@@ -28,15 +27,14 @@ namespace block_app {
             void Draw() const;
 
         private:
-            glm::vec2 top_left_corner_;
 
-            size_t num_pixels_per_side_;
+
+            double num_pixels_per_side_;
 
             /** Number of screen pixels in the width/height of one sketchpad pixel */
             double pixel_side_length_;
-            /**Map representation of pixels in the image, and boolean to represent if it is shaded */
-            std::map<std::vector<size_t>, bool> shading;
 
+            std::map<std::vector<size_t>, bool> shading;
         };
 
     }  // namespace visualizer

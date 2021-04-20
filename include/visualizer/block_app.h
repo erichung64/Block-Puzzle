@@ -1,6 +1,4 @@
-//
-// Created by eric on 4/19/21.
-//
+#pragma once
 
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
@@ -19,18 +17,19 @@ namespace block_app {
         public:
             BlockApp();
 
-            void Draw();
+            void draw() override;
 
             const double kWindowSize = 875;
             const double kMargin = 100;
-            const size_t kImageDimension = 28;
-
+            const double kImageDimension = 28;
 
         private:
             Grid grid_;
+
         };
 
     }  // namespace visualizer
 
 }  // namespace block_app
+
 
