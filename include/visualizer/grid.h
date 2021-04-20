@@ -25,7 +25,7 @@ namespace block_app {
             /**
              * Displays the current state of the sketchpad in the Cinder application.
              */
-            void draw() const;
+            void Draw() const;
 
         private:
             glm::vec2 top_left_corner_;
@@ -34,8 +34,6 @@ namespace block_app {
 
             /** Number of screen pixels in the width/height of one sketchpad pixel */
             double pixel_side_length_;
-
-            double brush_radius_;
             /**Map representation of pixels in the image, and boolean to represent if it is shaded */
             std::map<std::vector<size_t>, bool> shading;
 

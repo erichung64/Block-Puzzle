@@ -4,7 +4,6 @@
 #include <visualizer/block_app.h>
 
 using block_app::visualizer::BlockApp;
-
 void prepareSettings(BlockApp::Settings* settings) {
     settings->setResizable(false);
 }

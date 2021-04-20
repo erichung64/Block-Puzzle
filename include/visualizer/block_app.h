@@ -1,8 +1,6 @@
 //
 // Created by eric on 4/19/21.
 //
-#ifndef FINALPROJECT_POOL_APP_H
-#define FINALPROJECT_POOL_APP_H
 
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
@@ -21,19 +19,18 @@ namespace block_app {
         public:
             BlockApp();
 
-            void draw() override;
+            void Draw();
 
             const double kWindowSize = 875;
             const double kMargin = 100;
             const size_t kImageDimension = 28;
 
+
         private:
             Grid grid_;
-
         };
 
     }  // namespace visualizer
 
 }  // namespace block_app
 
-#endif //FINALPROJECT_POOL_APP_H
