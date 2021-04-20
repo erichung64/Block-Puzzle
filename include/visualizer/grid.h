@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cinder/gl/gl.h"
+#include <utility>
 #include <vector>
 namespace block_app {
 
@@ -25,14 +26,18 @@ namespace block_app {
              * Displays the current state of the sketchpad in the Cinder application.
              */
             void Draw() const;
+            void setShading(std::map<std::vector<size_t>, bool> s) {
+                shading = std::move(s);
+            }
+            std::map<std::vector<size_t>, bool> getShading() {
+                return shading;
+            }
 
         private:
             glm::vec2 top_left_corner_;
             double num_pixels_per_side_;
-
             /** Number of screen pixels in the width/height of one sketchpad pixel */
             double pixel_side_length_;
-
             std::map<std::vector<size_t>, bool> shading;
         };
 

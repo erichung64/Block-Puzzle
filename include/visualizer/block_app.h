@@ -4,6 +4,7 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "grid.h"
+#include "block.h"
 
 namespace block_app {
 
@@ -18,14 +19,13 @@ namespace block_app {
             BlockApp();
 
             void draw() override;
-
             const double kWindowSize = 875;
             const double kMargin = 100;
             const double kImageDimension = 9;
 
         private:
             Grid grid_;
-
+            Block b;
         };
 
     }  // namespace visualizer
