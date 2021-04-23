@@ -10,15 +10,49 @@ namespace block_app {
     namespace visualizer {
         using glm::vec2;
         void Block::Draw() {
-            vec2 pixel_top_left = vec2(700, 835/2);
-            vec2 pixel_bottom_right = vec2(800, 835/2 + 100);
-            ci::Rectf pixel_bounding_box(pixel_top_left, pixel_bottom_right);
+            blocks[0].append(L"....");
+            blocks[0].append(L"....");
+            blocks[0].append(L"XXXX");
+            blocks[0].append(L"....");
 
-            ci::gl::drawSolidRect(pixel_bounding_box);
+            blocks[1].append(L"....");
+            blocks[1].append(L".XX.");
+            blocks[1].append(L".XX.");
+            blocks[1].append(L"....");
 
-            ci::gl::color(ci::Color("black"));
-            ci::gl::drawStrokedRect(pixel_bounding_box);
+            blocks[2].append(L"....");
+            blocks[2].append(L"..X.");
+            blocks[2].append(L".XXX");
+            blocks[2].append(L"....");
+
+            blocks[3].append(L"....");
+            blocks[3].append(L".X..");
+            blocks[3].append(L"XX.");
+            blocks[3].append(L"....");
+
+            blocks[4].append(L"....");
+            blocks[4].append(L"....");
+            blocks[4].append(L"..XX");
+            blocks[4].append(L"..X.");
+
+            blocks[5].append(L"..X.");
+            blocks[5].append(L"..X.");
+            blocks[5].append(L"..X.");
+            blocks[5].append(L"..X.");
+
+            blocks[6].append(L"....");
+            blocks[6].append(L".X..");
+            blocks[6].append(L".XX.");
+            blocks[6].append(L"..X.");
+
+            blocks[7].append(L"....");
+            blocks[7].append(L"X...");
+            blocks[7].append(L"XXX.");
+            blocks[7].append(L"....");
         }
+
     }
+
+
 }
 

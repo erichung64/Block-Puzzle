@@ -8,7 +8,11 @@ namespace block_app {
         class Block {
         public:
             void Draw();
+            std::wstring getBlocks() {
+                return reinterpret_cast<const std::basic_string<wchar_t> &>(blocks);
+            }
         private:
+            std::wstring blocks[7];
 
         };
     }

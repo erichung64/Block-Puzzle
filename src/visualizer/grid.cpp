@@ -46,8 +46,29 @@ namespace block_app {
             }
         }
 
+        void Grid::HandleBrush(const vec2& brush_screen_coords) {
+            vec2 brush_sketchpad_coords =
+                    (brush_screen_coords - top_left_corner_) / (float)pixel_side_length_;
 
+            for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                    vec2 pixel_center = {col + 0.5, row + 0.5};
+                    std::vector<size_t> coordinates = {row, col};
+                    if (glm::distance(brush_sketchpad_coords, pixel_center) <= 1) {
+                        shading[coordinates] = true;
+                    }
+                }
+            }
+        }
+        void Grid::Clear() {
+            for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                for (size_t col = 0; col < num_pixels_per_side_; ++col) {
 
+                    std::vector<size_t> coordinates = {row, col};
+                    shading[coordinates] = false;
+                }
+            }
+        }
 
     }  // namespace visualizer
 

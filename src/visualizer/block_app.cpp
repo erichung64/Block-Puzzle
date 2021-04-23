@@ -14,10 +14,20 @@ namespace block_app {
             ci::gl::clear(background_color);
 
             grid_.Draw();
-            b.Draw();
+            //b.Draw();
         }
 
+        void BlockApp::mouseDown(ci::app::MouseEvent event) {
+            grid_.HandleBrush(event.getPos());
+        }
 
+        void BlockApp::keyDown(ci::app::KeyEvent event) {
+            switch (event.getCode()) {
+                case ci::app::KeyEvent::KEY_DELETE:
+                    grid_.Clear();
+                    break;
+            }
+        }
 
 
     }  // namespace visualizer

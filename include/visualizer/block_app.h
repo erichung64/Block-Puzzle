@@ -10,15 +10,14 @@ namespace block_app {
 
     namespace visualizer {
 
-/**
- * Allows a user to draw a digit on a sketchpad and uses Naive Bayes to
- * classify it.
- */
         class BlockApp : public ci::app::App {
         public:
             BlockApp();
 
             void draw() override;
+            void mouseDown(ci::app::MouseEvent event) override;
+            void keyDown(ci::app::KeyEvent event) override;
+
             const double kWindowSize = 875;
             const double kMargin = 100;
             const double kImageDimension = 9;
