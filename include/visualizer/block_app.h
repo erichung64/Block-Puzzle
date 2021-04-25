@@ -4,7 +4,8 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "grid.h"
-#include "block.h"
+#include "core/block.h"
+#include "inventory.h"
 
 namespace block_app {
 
@@ -18,13 +19,13 @@ namespace block_app {
             void mouseDown(ci::app::MouseEvent event) override;
             void keyDown(ci::app::KeyEvent event) override;
 
-            const double kWindowSize = 875;
-            const double kMargin = 100;
+            const double kWindowSize = 1000;
+            const double kMargin = 200;
             const double kImageDimension = 9;
 
         private:
             Grid grid_;
-            Block b;
+            Inventory inventory_;
         };
 
     }  // namespace visualizer

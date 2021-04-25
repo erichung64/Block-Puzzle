@@ -5,7 +5,8 @@ namespace block_app {
     namespace visualizer {
         using glm::vec2;
         BlockApp::BlockApp()
-                : grid_(glm::vec2(kMargin, kMargin), kImageDimension, kWindowSize - 2 * kMargin) {
+                : grid_(glm::vec2(kMargin, kMargin), kImageDimension, kWindowSize - 2 * kMargin),
+                inventory_(glm::vec2(kMargin, kMargin)) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
         }
 
@@ -14,7 +15,8 @@ namespace block_app {
             ci::gl::clear(background_color);
 
             grid_.Draw();
-            //b.Draw();
+            inventory_.Draw();
+
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {

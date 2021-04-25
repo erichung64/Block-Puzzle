@@ -7,10 +7,7 @@ namespace block_app {
     namespace visualizer {
         class Block {
         public:
-            void Draw();
-            std::wstring getBlocks() {
-                return reinterpret_cast<const std::basic_string<wchar_t> &>(blocks);
-            }
+            Block();
         private:
             std::wstring blocks[7];
 

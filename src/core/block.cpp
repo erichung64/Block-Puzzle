@@ -5,11 +5,11 @@
 #include <glm/vec2.hpp>
 #include <cinder/Rect.h>
 #include <cinder/gl/gl.h>
-#include "visualizer/block.h"
+#include "core/block.h"
 namespace block_app {
     namespace visualizer {
-        using glm::vec2;
-        void Block::Draw() {
+
+        Block::Block() {
             blocks[0].append(L"....");
             blocks[0].append(L"....");
             blocks[0].append(L"XXXX");
@@ -27,7 +27,7 @@ namespace block_app {
 
             blocks[3].append(L"....");
             blocks[3].append(L".X..");
-            blocks[3].append(L"XX.");
+            blocks[3].append(L"XX..");
             blocks[3].append(L"....");
 
             blocks[4].append(L"....");
@@ -50,7 +50,6 @@ namespace block_app {
             blocks[7].append(L"XXX.");
             blocks[7].append(L"....");
         }
-
     }
 
 
