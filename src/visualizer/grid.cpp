@@ -20,7 +20,7 @@ namespace block_app {
         }
 
 
-        void Grid::Draw() const {
+        void Grid::Draw() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                     /**Shades the sketchpad according to map*/
@@ -44,6 +44,7 @@ namespace block_app {
                     ci::gl::drawStrokedRect(pixel_bounding_box);
                 }
             }
+            CheckRow();
         }
 
         void Grid::HandleBrush(const vec2& brush_screen_coords) {
@@ -69,6 +70,25 @@ namespace block_app {
                 }
             }
         }
+
+        void Grid::CheckRow() {
+            for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                bool isFilled = false;
+                for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                    std::vector<size_t> coordinates = {row, col};
+                    if (!shading.at(coordinates)) {
+                        isFilled = false;
+                    } else {
+                        isFilled = true;
+                    }
+                }
+                // fix dis pls
+                if (isFilled) {
+                    Clear();
+                }
+            }
+        }
+
 
     }  // namespace visualizer
 

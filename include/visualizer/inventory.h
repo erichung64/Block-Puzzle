@@ -16,6 +16,7 @@ namespace block_app {
             void Draw() const;
         private:
             glm::vec2 top_left_corner_;
+            //Block block_;
         };
     }
 }

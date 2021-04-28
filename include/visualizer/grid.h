@@ -25,7 +25,8 @@ namespace block_app {
             /**
              * Displays the current state of the grid in the Cinder application.
              */
-            void Draw() const;
+            void Draw();
+            void CheckRow();
             /**
             * Shades in the grid pixels whose centers are within brush_radius units
            * of the brush's location. (One unit is equal to the length of one grid

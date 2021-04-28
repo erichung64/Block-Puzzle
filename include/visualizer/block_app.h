@@ -4,7 +4,6 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "grid.h"
-#include "core/block.h"
 #include "inventory.h"
 
 namespace block_app {
