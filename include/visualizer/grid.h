@@ -27,6 +27,7 @@ namespace block_app {
              */
             void Draw();
             void CheckRow();
+            void CheckCol();
             /**
             * Shades in the grid pixels whose centers are within brush_radius units
            * of the brush's location. (One unit is equal to the length of one grid

@@ -45,6 +45,7 @@ namespace block_app {
                 }
             }
             CheckRow();
+            CheckCol();
         }
 
         void Grid::HandleBrush(const vec2& brush_screen_coords) {
@@ -73,18 +74,36 @@ namespace block_app {
 
         void Grid::CheckRow() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {
-                bool isFilled = false;
+                int isFilled = 0;
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                     std::vector<size_t> coordinates = {row, col};
-                    if (!shading.at(coordinates)) {
-                        isFilled = false;
-                    } else {
-                        isFilled = true;
+                    if (shading.at(coordinates)) {
+                        isFilled++;
                     }
                 }
-                // fix dis pls
-                if (isFilled) {
-                    Clear();
+                if (isFilled == num_pixels_per_side_) {
+                    for (size_t r = 0; r < num_pixels_per_side_; ++r) {
+                        std::vector<size_t> coordinates = {row, r};
+                        shading[coordinates] = false;
+                    }
+                }
+            }
+        }
+
+        void Grid::CheckCol() {
+            for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                int isFilled = 0;
+                for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                    std::vector<size_t> coordinates = {col, row};
+                    if (shading.at(coordinates)) {
+                        isFilled++;
+                    }
+                }
+                if (isFilled == num_pixels_per_side_) {
+                    for (size_t r = 0; r < num_pixels_per_side_; ++r) {
+                        std::vector<size_t> coordinates = {r, row};
+                        shading[coordinates] = false;
+                    }
                 }
             }
         }
