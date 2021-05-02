@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <core/block.h>
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -12,11 +13,11 @@ namespace block_app {
     namespace visualizer {
         class Inventory {
         public:
-            Inventory(const glm::vec2& top_left_corner);
+            Inventory();
             void Draw() const;
         private:
-            glm::vec2 top_left_corner_;
-            //Block block_;
+            //std::wstring blocks[7];
+            core::Block block_;
         };
     }
 }

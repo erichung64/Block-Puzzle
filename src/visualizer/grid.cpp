@@ -86,6 +86,7 @@ namespace block_app {
                         std::vector<size_t> coordinates = {row, r};
                         shading[coordinates] = false;
                     }
+                    score = score + 10;
                 }
             }
         }
@@ -104,8 +105,13 @@ namespace block_app {
                         std::vector<size_t> coordinates = {r, row};
                         shading[coordinates] = false;
                     }
+                    score = score + 10;
                 }
             }
+        }
+
+       int Grid::returnScore() {
+            return score;
         }
 
 

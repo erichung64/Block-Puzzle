@@ -6,16 +6,19 @@ namespace block_app {
         using glm::vec2;
         BlockApp::BlockApp()
                 : grid_(glm::vec2(kMargin, kMargin), kImageDimension, kWindowSize - 2 * kMargin),
-                inventory_(glm::vec2(kMargin, kMargin)) {
+                inventory_() {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
         }
 
         void BlockApp::draw() {
             ci::Color8u background_color(54, 128, 247);
             ci::gl::clear(background_color);
-
+            ci::gl::drawStringCentered(
+                    "Score: " + std::to_string(grid_.returnScore()),
+                    glm::vec2(kWindowSize / 2, kMargin / 2), ci::Color("black"));
             grid_.Draw();
             inventory_.Draw();
+
 
         }
 

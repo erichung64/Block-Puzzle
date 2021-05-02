@@ -41,7 +41,7 @@ FetchContent_GetProperties(catch2)
 if(NOT catch2_POPULATED)
     FetchContent_Populate(catch2)
     add_library(catch2 INTERFACE tests/test_main.cpp app/block-app.cpp include/visualizer/grid.h src/visualizer/grid.cpp
-            src/visualizer/inventory.cpp include/visualizer/inventory.h)
+            src/visualizer/inventory.cpp include/visualizer/inventory.h include/core/block.h src/core/block.cpp)
     target_include_directories(catch2 INTERFACE ${catch2_SOURCE_DIR}/single_include)
 endif()
 
@@ -54,11 +54,12 @@ include("${CINDER_PATH}/proj/cmake/modules/cinderMakeApp.cmake")
 list(APPEND SOURCE_FILES    ${CORE_SOURCE_FILES}
         src/visualizer/block_app.cpp
         src/visualizer/grid.cpp
-        src/visualizer/inventory.cpp)
+        src/visualizer/inventory.cpp
+        src/core/block.cpp)
 
 list(APPEND TEST_FILES)
 
-add_executable(block app/Main.cpp ${CORE_SOURCE_FILES})
+add_executable(block app/Main.cpp ${CORE_SOURCE_FILES} src/core/block.cpp include/core/block.h)
 target_include_directories(block PRIVATE include)
 
 ci_make_app(
