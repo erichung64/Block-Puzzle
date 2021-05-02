@@ -12,10 +12,13 @@ namespace block_app {
     namespace core {
         class Block {
         public:
-            Block();
+            Block(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size);
             void Draw() const;
         private:
-
+            glm::vec2 top_left_corner_;
+            double num_pixels_per_side_;
+            double pixel_side_length_;
+            std::string blocks[7];
         };
     }
 }

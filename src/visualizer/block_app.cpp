@@ -5,7 +5,7 @@ namespace block_app {
     namespace visualizer {
         using glm::vec2;
         BlockApp::BlockApp()
-                : grid_(glm::vec2(kMargin, kMargin), kImageDimension, kWindowSize - 2 * kMargin),
+                : grid_(glm::vec2(kMargin, kMargin - 100), kImageDimension, kWindowSize - 2 * kMargin),
                 inventory_() {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
         }

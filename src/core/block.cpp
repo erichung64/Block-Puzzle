@@ -4,18 +4,105 @@
 
 #include "core/block.h"
 using glm::vec2;
-block_app::core::Block::Block() {
 
+block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size)
+        : top_left_corner_(top_left_corner),
+          num_pixels_per_side_(num_pixels_per_side),
+          pixel_side_length_(sketchpad_size / num_pixels_per_side) {
+    blocks[0].append("....");
+    blocks[0].append("....");
+    blocks[0].append("XXXX");
+    blocks[0].append("....");
+
+    blocks[1].append("....");
+    blocks[1].append(".XX.");
+    blocks[1].append(".XX.");
+    blocks[1].append("....");
+
+    blocks[2].append("....");
+    blocks[2].append("..X.");
+    blocks[2].append(".XXX");
+    blocks[2].append("....");
+
+    blocks[3].append("....");
+    blocks[3].append(".X..");
+    blocks[3].append("XX..");
+    blocks[3].append("....");
+
+    blocks[4].append("....");
+    blocks[4].append("....");
+    blocks[4].append("..XX");
+    blocks[4].append("..X.");
+
+    blocks[5].append("..X.");
+    blocks[5].append("..X.");
+    blocks[5].append("..X.");
+    blocks[5].append("..X.");
+
+    blocks[6].append("....");
+    blocks[6].append(".X..");
+    blocks[6].append(".XX.");
+    blocks[6].append("..X.");
 }
 
 void block_app::core::Block::Draw() const {
-    glm::vec2 top_left_corner_ = glm::vec2(300, 900);
-    vec2 pixel_top_left = top_left_corner_;
-    vec2 pixel_bottom_right =
-            pixel_top_left + vec2(66.66, 66.66);
-    ci::Rectf pixel_bounding_box(pixel_top_left, pixel_bottom_right);
-    ci::gl::drawSolidRect(pixel_bounding_box);
-    ci::gl::color(ci::Color("black"));
-    ci::gl::drawStrokedRect(pixel_bounding_box);
-}
+    std::string b = blocks[rand() & 6];
+    for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+        for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+            if (b.at(col + row * 4) == 'X') {
+                ci::gl::color(ci::Color("white"));
+                vec2 pixel_top_left = top_left_corner_ + vec2(col * pixel_side_length_,
+                                                              row * pixel_side_length_);
 
+                vec2 pixel_bottom_right =
+                        pixel_top_left + vec2(pixel_side_length_, pixel_side_length_);
+                ci::Rectf pixel_bounding_box(pixel_top_left, pixel_bottom_right);
+
+                ci::gl::drawSolidRect(pixel_bounding_box);
+
+                ci::gl::color(ci::Color("black"));
+                ci::gl::drawStrokedRect(pixel_bounding_box);
+            }
+        }
+    }
+}
+/*
+blocks[0].append(L"....");
+blocks[0].append(L"....");
+blocks[0].append(L"XXXX");
+blocks[0].append(L"....");
+
+blocks[1].append(L"....");
+blocks[1].append(L".XX.");
+blocks[1].append(L".XX.");
+blocks[1].append(L"....");
+
+blocks[2].append(L"....");
+blocks[2].append(L"..X.");
+blocks[2].append(L".XXX");
+blocks[2].append(L"....");
+
+blocks[3].append(L"....");
+blocks[3].append(L".X..");
+blocks[3].append(L"XX..");
+blocks[3].append(L"....");
+
+blocks[4].append(L"....");
+blocks[4].append(L"....");
+blocks[4].append(L"..XX");
+blocks[4].append(L"..X.");
+
+blocks[5].append(L"..X.");
+blocks[5].append(L"..X.");
+blocks[5].append(L"..X.");
+blocks[5].append(L"..X.");
+
+blocks[6].append(L"....");
+blocks[6].append(L".X..");
+blocks[6].append(L".XX.");
+blocks[6].append(L"..X.");
+
+blocks[7].append(L"....");
+blocks[7].append(L"X...");
+blocks[7].append(L"XXX.");
+blocks[7].append(L"....");*/
