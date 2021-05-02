@@ -3,6 +3,8 @@
 #include "cinder/gl/gl.h"
 #include <utility>
 #include <vector>
+#include <cinder/app/MouseEvent.h>
+#include "core/block.h"
 namespace block_app {
 
     namespace visualizer {
@@ -20,7 +22,7 @@ namespace block_app {
              * @param sketchpad_size      the side length of the grid, measured in
              *                            screen pixels
              */
-            Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size);
+            Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size, std::map<std::vector<size_t>, bool> shading);
 
             /**
              * Displays the current state of the grid in the Cinder application.
@@ -37,18 +39,17 @@ namespace block_app {
            * @param brush_screen_coords the screen coordinates at which the brush is
            *           located
            */
-            void HandleBrush(const glm::vec2& brush_screen_coords);
+            void HandleBrush(const glm::vec2& brush_screen_coords, int i);
             /**
             * Set all of the sketchpad pixels to an unshaded state.
             */
             void Clear();
 
-
         private:
             glm::vec2 top_left_corner_;
             double num_pixels_per_side_;
             double pixel_side_length_;
-            std::map<std::vector<size_t>, bool> shading;
+            std::map<std::vector<size_t>, bool> shading_;
             int score;
         };
 

@@ -45,11 +45,11 @@ block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixel
     blocks[6].append("..X.");
 }
 
-void block_app::core::Block::Draw() const {
-    std::string b = blocks[rand() & 6];
+void block_app::core::Block::Draw(int i) const {
+    std::string b = blocks[i];
     for (size_t row = 0; row < num_pixels_per_side_; ++row) {
         for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-            if (b.at(col + row * 4) == 'X') {
+            if (b.at(col + row * num_pixels_per_side_) == 'X') {
                 ci::gl::color(ci::Color("white"));
                 vec2 pixel_top_left = top_left_corner_ + vec2(col * pixel_side_length_,
                                                               row * pixel_side_length_);
@@ -66,43 +66,8 @@ void block_app::core::Block::Draw() const {
         }
     }
 }
-/*
-blocks[0].append(L"....");
-blocks[0].append(L"....");
-blocks[0].append(L"XXXX");
-blocks[0].append(L"....");
 
-blocks[1].append(L"....");
-blocks[1].append(L".XX.");
-blocks[1].append(L".XX.");
-blocks[1].append(L"....");
+void block_app::core::Block::mouseDrag(ci::app::MouseEvent event) {
+    top_left_corner_ = event.getPos();
+}
 
-blocks[2].append(L"....");
-blocks[2].append(L"..X.");
-blocks[2].append(L".XXX");
-blocks[2].append(L"....");
-
-blocks[3].append(L"....");
-blocks[3].append(L".X..");
-blocks[3].append(L"XX..");
-blocks[3].append(L"....");
-
-blocks[4].append(L"....");
-blocks[4].append(L"....");
-blocks[4].append(L"..XX");
-blocks[4].append(L"..X.");
-
-blocks[5].append(L"..X.");
-blocks[5].append(L"..X.");
-blocks[5].append(L"..X.");
-blocks[5].append(L"..X.");
-
-blocks[6].append(L"....");
-blocks[6].append(L".X..");
-blocks[6].append(L".XX.");
-blocks[6].append(L"..X.");
-
-blocks[7].append(L"....");
-blocks[7].append(L"X...");
-blocks[7].append(L"XXX.");
-blocks[7].append(L"....");*/

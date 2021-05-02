@@ -15,12 +15,8 @@ namespace block_app {
         public:
             Inventory();
             void Draw() const;
-            const double kWindowSize = 1000;
-            const double kMargin = 200;
-            const double kImageDimension = 4;
         private:
 
-            core::Block block_;
         };
     }
 }

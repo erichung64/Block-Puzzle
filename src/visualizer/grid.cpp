@@ -1,20 +1,23 @@
 #include <visualizer/grid.h>
 
+#include <utility>
+
 namespace block_app {
 
     namespace visualizer {
 
         using glm::vec2;
 
-        Grid::Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size)
+        Grid::Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size, std::map<std::vector<size_t>, bool> shading)
                 : top_left_corner_(top_left_corner),
                   num_pixels_per_side_(num_pixels_per_side),
-                  pixel_side_length_(sketchpad_size / num_pixels_per_side) {
+                  pixel_side_length_(sketchpad_size / num_pixels_per_side),
+                  shading_(std::move(shading)){
             for (size_t row = 0; row < (size_t)num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < (size_t)num_pixels_per_side_; ++col) {
 
                     std::vector<size_t> coordinates = {row, col};
-                    shading[coordinates] = false;
+                    shading_[coordinates] = false;
                 }
             }
         }
@@ -25,7 +28,7 @@ namespace block_app {
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                     /**Shades the sketchpad according to map*/
                     std::vector<size_t> coordinates = {row, col};
-                    if (shading.at(coordinates)) {
+                    if (shading_.at(coordinates)) {
                         ci::gl::color(ci::Color::gray(0.3f));
                     } else {
                         ci::gl::color(ci::Color("white"));
@@ -48,16 +51,21 @@ namespace block_app {
             CheckCol();
         }
 
-        void Grid::HandleBrush(const vec2& brush_screen_coords) {
+        void Grid::HandleBrush(const vec2& brush_screen_coords, int i) {
             vec2 brush_sketchpad_coords =
                     (brush_screen_coords - top_left_corner_) / (float)pixel_side_length_;
 
-            for (size_t row = 0; row < num_pixels_per_side_; ++row) {
-                for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                    vec2 pixel_center = {col + 0.5, row + 0.5};
-                    std::vector<size_t> coordinates = {row, col};
-                    if (glm::distance(brush_sketchpad_coords, pixel_center) <= 1) {
-                        shading[coordinates] = true;
+            if (i == 0) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[coordinates] = true;
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row, col + 2}] = true;
+                            shading_[{row, col + 3}] = true;
+                        }
                     }
                 }
             }
@@ -67,7 +75,7 @@ namespace block_app {
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
 
                     std::vector<size_t> coordinates = {row, col};
-                    shading[coordinates] = false;
+                    shading_[coordinates] = false;
                 }
             }
         }
@@ -77,14 +85,14 @@ namespace block_app {
                 int isFilled = 0;
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                     std::vector<size_t> coordinates = {row, col};
-                    if (shading.at(coordinates)) {
+                    if (shading_.at(coordinates)) {
                         isFilled++;
                     }
                 }
                 if (isFilled == num_pixels_per_side_) {
                     for (size_t r = 0; r < num_pixels_per_side_; ++r) {
                         std::vector<size_t> coordinates = {row, r};
-                        shading[coordinates] = false;
+                        shading_[coordinates] = false;
                     }
                     score = score + 10;
                 }
@@ -96,14 +104,14 @@ namespace block_app {
                 int isFilled = 0;
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                     std::vector<size_t> coordinates = {col, row};
-                    if (shading.at(coordinates)) {
+                    if (shading_.at(coordinates)) {
                         isFilled++;
                     }
                 }
                 if (isFilled == num_pixels_per_side_) {
                     for (size_t r = 0; r < num_pixels_per_side_; ++r) {
                         std::vector<size_t> coordinates = {r, row};
-                        shading[coordinates] = false;
+                        shading_[coordinates] = false;
                     }
                     score = score + 10;
                 }
@@ -113,8 +121,6 @@ namespace block_app {
        int Grid::returnScore() {
             return score;
         }
-
-
     }  // namespace visualizer
 
 }  // namespace block_app

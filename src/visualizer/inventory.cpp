@@ -8,7 +8,7 @@
 namespace block_app {
     namespace visualizer {
         using glm::vec2;
-        Inventory::Inventory() : block_(glm::vec2(200, 750), kImageDimension, 200) {}
+        Inventory::Inventory() {}
 
         void Inventory::Draw() const {
             vec2 top_left_corner_ = vec2(200, 750);
@@ -16,7 +16,6 @@ namespace block_app {
             ci::Rectf pixel_bounding_box(top_left_corner_, bottom_right_corner_);
             ci::gl::color(ci::Color("white"));
             ci::gl::drawSolidRect(pixel_bounding_box);
-            block_.Draw();
         }
 
 
