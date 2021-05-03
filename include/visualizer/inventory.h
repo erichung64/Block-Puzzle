@@ -16,7 +16,6 @@ namespace block_app {
             Inventory();
             void Draw() const;
         private:
-
         };
     }
 }

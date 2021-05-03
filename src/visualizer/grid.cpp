@@ -1,18 +1,15 @@
 #include <visualizer/grid.h>
 
-#include <utility>
-
 namespace block_app {
 
     namespace visualizer {
 
         using glm::vec2;
 
-        Grid::Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size, std::map<std::vector<size_t>, bool> shading)
+        Grid::Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size)
                 : top_left_corner_(top_left_corner),
                   num_pixels_per_side_(num_pixels_per_side),
-                  pixel_side_length_(sketchpad_size / num_pixels_per_side),
-                  shading_(std::move(shading)){
+                  pixel_side_length_(sketchpad_size / num_pixels_per_side) {
             for (size_t row = 0; row < (size_t)num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < (size_t)num_pixels_per_side_; ++col) {
 
@@ -76,7 +73,9 @@ namespace block_app {
                             shading_[{row, col + 2}] = true;
                             shading_[{row, col + 3}] = true;
                             score += 4;
+                            block = 10;
                             return true;
+
                         }
                     }
                 }
@@ -100,6 +99,7 @@ namespace block_app {
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
                             score += 4;
+                            block = 10;
                             return true;
                         }
                     }
@@ -124,6 +124,7 @@ namespace block_app {
                             shading_[{row + 1, col + 1}] = true;
                             shading_[{row + 1, col + 2}] = true;
                             score += 4;
+                            block = 10;
                             return true;
                         }
                     }
@@ -145,6 +146,7 @@ namespace block_app {
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
                             score += 3;
+                            block = 10;
                             return true;
                         }
                     }
@@ -166,6 +168,7 @@ namespace block_app {
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             score += 3;
+                            block = 10;
                             return true;
                         }
                     }
@@ -190,6 +193,7 @@ namespace block_app {
                             shading_[{row + 2, col}] = true;
                             shading_[{row + 3, col}] = true;
                             score += 3;
+                            block = 10;
                             return true;
                         }
                     }
@@ -206,21 +210,81 @@ namespace block_app {
                                 return false;
                             } else if (shading_[{row + 1, col + 1}] || !inRange(0, num_pixels_per_side_, row + 1) || !inRange(0, num_pixels_per_side_, col + 1)) {
                                 return false;
-                            } else if (shading_[{row + 1, col + 2}] || !inRange(0, num_pixels_per_side_, row + 1) || !inRange(0, num_pixels_per_side_, col + 2)) {
+                            } else if (shading_[{row + 2, col + 1}] || !inRange(0, num_pixels_per_side_, row + 2) || !inRange(0, num_pixels_per_side_, col + 1)) {
                                 return false;
                             }
                             shading_[{row, col}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
-                            shading_[{row + 1, col + 2}] = true;
-                            score += 3;
+                            shading_[{row + 2, col + 1}] = true;
+                            score += 4;
+                            block = 10;
                             return true;
                         }
                     }
                 }
             }
+            if (i == 7) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col, row};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}] || !inRange(0, num_pixels_per_side_, row + 1)) {
+                                return false;
+                            } else if (shading_[{row + 2, col}] || !inRange(0, num_pixels_per_side_, row + 2)) {
+                                return false;
+                            } else if (shading_[{row, col + 1}] || !inRange(0, num_pixels_per_side_, col + 1)) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 1}] || !inRange(0, num_pixels_per_side_, row + 1) || !inRange(0, num_pixels_per_side_, col + 1)) {
+                                return false;
+                            } else if (shading_[{row + 2, col + 1}] || !inRange(0, num_pixels_per_side_, row + 2) || !inRange(0, num_pixels_per_side_, col + 1)) {
+                                return false;
+                            } else if (shading_[{row, col + 2}] || !inRange(0, num_pixels_per_side_, col + 2)) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 2}] || !inRange(0, num_pixels_per_side_, row + 1) || !inRange(0, num_pixels_per_side_, col + 2)) {
+                                return false;
+                            } else if (shading_[{row + 2, col + 2}] || !inRange(0, num_pixels_per_side_, row + 2) || !inRange(0, num_pixels_per_side_, col + 2)) {
+                                return false;
+                            }
+                            shading_[{row, col}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 2, col}] = true;
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row + 1, col + 1}] = true;
+                            shading_[{row + 2, col + 1}] = true;
+                            shading_[{row, col + 2}] = true;
+                            shading_[{row + 1, col + 2}] = true;
+                            shading_[{row + 2, col + 2}] = true;
+                            score += 9;
+                            block = 10;
+                            return true;
+                        }
+                    }
+                }
+            }
+            if (i == 8) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col, row};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            if (shading_[{row, col}]) {
+                                return false;
+                            }
+                            shading_[{row, col}] = true;
+                            score += 1;
+                            block = 10;
+                            return true;
+                        }
+                    }
+                }
+            }
+            block = 10;
             return false;
         }
+
+
         void Grid::Clear() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
@@ -274,12 +338,15 @@ namespace block_app {
         }
 
         bool Grid::CheckGame() {
-            int isGameOver = 0;
+            bool isGameOver = true;
             if (block == 0) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col}] && shading_[{row, col + 1}] && shading_[{row, col + 2}] && shading_[{row, col + 3}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col}] && !shading_[{row, col + 1}] && !shading_[{row, col + 2}] && !shading_[{row, col + 3}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, col + 2)
+                        && inRange(0, num_pixels_per_side_, col + 3)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -288,8 +355,10 @@ namespace block_app {
             if (block == 1) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col}] && shading_[{row, col + 1}] && shading_[{row + 1, col}] && shading_[{row + 1, col + 1}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col}] && !shading_[{row, col + 1}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, row + 1)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -298,8 +367,11 @@ namespace block_app {
             if (block == 2) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col + 1}] && shading_[{row + 1, col}] && shading_[{row + 1, col + 1}] && shading_[{row + 1, col + 2}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col + 1}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}] && !shading_[{row + 1, col + 2}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, row + 1)
+                        && inRange(0, num_pixels_per_side_, col + 2)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -308,8 +380,10 @@ namespace block_app {
             if (block == 3) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col + 1}] && shading_[{row + 1, col}] && shading_[{row + 1, col + 1}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col + 1}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, row + 1)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -318,8 +392,10 @@ namespace block_app {
             if (block == 4) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col}] && shading_[{row + 1, col}] && shading_[{row, col + 1}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row, col + 1}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, row + 1)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -328,8 +404,11 @@ namespace block_app {
             if (block == 5) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col}] && shading_[{row + 1, col}] && shading_[{row + 2, col}] && shading_[{row + 3, col}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row + 2, col}] && !shading_[{row + 3, col}]
+                        && inRange(0, num_pixels_per_side_, row + 1)
+                        && inRange(0, num_pixels_per_side_, row + 2)
+                        && inRange(0, num_pixels_per_side_, row + 3)) {
+                            isGameOver = false;
                         }
 
                     }
@@ -338,22 +417,52 @@ namespace block_app {
             if (block == 6) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (shading_[{row, col}] && shading_[{row + 1, col}] && shading_[{row + 1, col + 1}] && shading_[{row + 1, col + 2}]) {
-                            isGameOver++;
+                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}] && !shading_[{row + 1, col + 2}]
+                        && inRange(0, num_pixels_per_side_, col + 1)
+                        && inRange(0, num_pixels_per_side_, row + 1)
+                        && inRange(0, num_pixels_per_side_, col + 2)) {
+                            isGameOver = false;
                         }
 
                     }
                 }
             }
-            if (isGameOver == 0) {
-                return true;
-            } else {
-                return false;
+            if (block == 7) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row + 2, col}] &&
+                        !shading_[{row, col + 1}] && !shading_[{row + 1, col + 1}] && !shading_[{row + 2, col + 1}] &&
+                        !shading_[{row, col + 2}] && !shading_[{row + 1, col + 2}] && !shading_[{row + 2, col + 2}]
+                        && inRange(0, num_pixels_per_side_, row + 2)
+                        && inRange(0, num_pixels_per_side_, col + 2)) {
+                            isGameOver = false;
+                        }
+
+                    }
+                }
             }
+            if (block == 8) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        if (!shading_[{row, col}]) {
+                            isGameOver = false;
+                        }
+
+                    }
+                }
+            }
+            if (block == 10) {
+                isGameOver = false;
+            }
+            return isGameOver;
         }
 
         bool Grid::inRange(int low, int high, int x) {
             return (x-high)*(x-low) < 0;
+        }
+
+        void Grid::resetScore() {
+            score = 0;
         }
     }  // namespace visualizer
 

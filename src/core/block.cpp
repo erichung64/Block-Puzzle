@@ -44,10 +44,20 @@ block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixel
     blocks[6].append(".X..");
     blocks[6].append("....");
 
+    blocks[7].append("XXX.");
+    blocks[7].append("XXX.");
+    blocks[7].append("XXX.");
     blocks[7].append("....");
-    blocks[7].append("....");
-    blocks[7].append("....");
-    blocks[7].append("....");
+
+    blocks[8].append("X...");
+    blocks[8].append("....");
+    blocks[8].append("....");
+    blocks[8].append("....");
+
+    blocks[9].append("....");
+    blocks[9].append("....");
+    blocks[9].append("....");
+    blocks[9].append("....");
 }
 
 void block_app::core::Block::Draw(int i) const {
@@ -70,6 +80,10 @@ void block_app::core::Block::Draw(int i) const {
                 } else if (i == 6) {
                     ci::gl::color(ci::Color("purple"));
                 } else if (i == 7) {
+                    ci::gl::color(ci::Color("green"));
+                } else if (i == 8) {
+                    ci::gl::color(ci::Color("blue"));
+                } else if (i == 9) {
                     ci::gl::color(ci::Color("white"));
                 }
 

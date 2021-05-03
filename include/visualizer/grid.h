@@ -22,7 +22,7 @@ namespace block_app {
              * @param sketchpad_size      the side length of the grid, measured in
              *                            screen pixels
              */
-            Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size, std::map<std::vector<size_t>, bool> shading);
+            Grid(const glm::vec2& top_left_corner, double num_pixels_per_side, double sketchpad_size);
 
             /**
              * Displays the current state of the grid in the Cinder application.
@@ -33,6 +33,7 @@ namespace block_app {
             int returnScore();
             bool CheckGame();
             bool inRange(int low, int high, int x);
+            void resetScore();
             /**
             * Shades in the grid pixels whose centers are within brush_radius units
            * of the brush's location. (One unit is equal to the length of one grid
@@ -47,13 +48,14 @@ namespace block_app {
             */
             void Clear();
 
+            int score;
+            int block;
+            std::map<std::vector<size_t>, bool> shading_;
         private:
             glm::vec2 top_left_corner_;
             double num_pixels_per_side_;
             double pixel_side_length_;
-            std::map<std::vector<size_t>, bool> shading_;
-            int score;
-            int block;
+
         };
 
     }  // namespace visualizer

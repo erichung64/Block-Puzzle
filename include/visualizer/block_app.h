@@ -24,7 +24,6 @@ namespace block_app {
             const double kWindowSize = 1000;
             const double kMargin = 250;
             const double kImageDimension = 8;
-            std::map<std::vector<size_t>, bool> shading;
             int clickedOn;
             int countBlocksPlaced = 0;
             int block1;

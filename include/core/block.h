@@ -20,7 +20,7 @@ namespace block_app {
             glm::vec2 top_left_corner_;
             double num_pixels_per_side_;
             double pixel_side_length_;
-            std::string blocks[8];
+            std::string blocks[10];
         };
     }
 }
