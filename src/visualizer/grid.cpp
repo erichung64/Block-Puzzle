@@ -69,6 +69,88 @@ namespace block_app {
                     }
                 }
             }
+            if (i == 1) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[coordinates] = true;
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 1, col + 1}] = true;
+                        }
+                    }
+                }
+            }
+            if (i == 2) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 1, col + 1}] = true;
+                            shading_[{row + 1, col + 2}] = true;
+                        }
+                    }
+                }
+            }
+            if (i == 3) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 1, col + 1}] = true;
+                        }
+                    }
+                }
+            }
+            if (i == 4) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[{row, col}] = true;
+                            shading_[{row, col + 1}] = true;
+                            shading_[{row + 1, col}] = true;
+                        }
+                    }
+                }
+            }
+            if (i == 5) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[{row, col}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 2, col}] = true;
+                            shading_[{row + 3, col}] = true;
+                        }
+                    }
+                }
+            }
+            if (i == 6) {
+                for (size_t row = 0; row < num_pixels_per_side_; ++row) {
+                    for (size_t col = 0; col < num_pixels_per_side_; ++col) {
+                        vec2 pixel_center = {col + 0.5, row + 0.5};
+                        if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
+                            std::vector<size_t> coordinates = {row, col};
+                            shading_[{row, col}] = true;
+                            shading_[{row + 1, col}] = true;
+                            shading_[{row + 1, col + 1}] = true;
+                            shading_[{row + 1, col + 2}] = true;
+                        }
+                    }
+                }
+            }
         }
         void Grid::Clear() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {

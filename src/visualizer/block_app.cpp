@@ -6,9 +6,14 @@ namespace block_app {
         using glm::vec2;
         BlockApp::BlockApp()
                 : grid_(glm::vec2(kMargin, kMargin - 100), kImageDimension, kWindowSize - 2 * kMargin, shading),
-                inventory_(), block_(glm::vec2(150, 750), 4, 269),
+                inventory_(),
+                block_(glm::vec2(150, 750), 4, 269),
                 block1_(glm::vec2(400, 750), 4, 269),
-                block2_(glm::vec2(650, 750), 4, 269){
+                block2_(glm::vec2(650, 750), 4, 269),
+                block1(rand() % 6),
+                block2(rand() % 6),
+                block3(rand() % 6)
+                {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
 
         }
@@ -22,13 +27,21 @@ namespace block_app {
             grid_.Draw();
             inventory_.Draw();
 
-            block_.Draw(0);
-            block1_.Draw(1);
-            block2_.Draw(2);
+            block_.Draw(block1);
+            block1_.Draw(block2);
+            block2_.Draw(block3);
         }
 
         void BlockApp::mouseUp(ci::app::MouseEvent event) {
-            grid_.HandleBrush(event.getPos(), 0);
+            if (clickedOn == 0) {
+                grid_.HandleBrush(event.getPos(), block1);
+            }
+            if (clickedOn == 1) {
+                grid_.HandleBrush(event.getPos(), block2);
+            }
+            if (clickedOn == 2) {
+                grid_.HandleBrush(event.getPos(), block3);
+            }
         }
 
         void BlockApp::keyDown(ci::app::KeyEvent event) {

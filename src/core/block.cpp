@@ -9,40 +9,40 @@ block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixel
         : top_left_corner_(top_left_corner),
           num_pixels_per_side_(num_pixels_per_side),
           pixel_side_length_(sketchpad_size / num_pixels_per_side) {
-    blocks[0].append("....");
-    blocks[0].append("....");
     blocks[0].append("XXXX");
     blocks[0].append("....");
+    blocks[0].append("....");
+    blocks[0].append("....");
 
+    blocks[1].append("XX..");
+    blocks[1].append("XX..");
     blocks[1].append("....");
-    blocks[1].append(".XX.");
-    blocks[1].append(".XX.");
     blocks[1].append("....");
 
+    blocks[2].append(".X..");
+    blocks[2].append("XXX.");
     blocks[2].append("....");
-    blocks[2].append("..X.");
-    blocks[2].append(".XXX");
     blocks[2].append("....");
 
-    blocks[3].append("....");
     blocks[3].append(".X..");
     blocks[3].append("XX..");
     blocks[3].append("....");
+    blocks[3].append("....");
 
+    blocks[4].append("XX..");
+    blocks[4].append("X...");
     blocks[4].append("....");
     blocks[4].append("....");
-    blocks[4].append("..XX");
-    blocks[4].append("..X.");
 
-    blocks[5].append("..X.");
-    blocks[5].append("..X.");
-    blocks[5].append("..X.");
-    blocks[5].append("..X.");
+    blocks[5].append("X...");
+    blocks[5].append("X...");
+    blocks[5].append("X...");
+    blocks[5].append("X...");
 
-    blocks[6].append("....");
+    blocks[6].append("X...");
+    blocks[6].append("XX..");
     blocks[6].append(".X..");
-    blocks[6].append(".XX.");
-    blocks[6].append("..X.");
+    blocks[6].append("....");
 }
 
 void block_app::core::Block::Draw(int i) const {

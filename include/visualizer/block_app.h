@@ -32,6 +32,10 @@ namespace block_app {
             core::Block block1_;
             core::Block block2_;
 
+            int block1;
+            int block2;
+            int block3;
+
         };
 
     }  // namespace visualizer
