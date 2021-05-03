@@ -22,7 +22,7 @@ namespace block_app {
             void generateRandomBlocks();
 
             const double kWindowSize = 1000;
-            const double kMargin = 200;
+            const double kMargin = 250;
             const double kImageDimension = 8;
             std::map<std::vector<size_t>, bool> shading;
             int clickedOn;

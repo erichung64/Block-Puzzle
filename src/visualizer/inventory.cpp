@@ -11,15 +11,12 @@ namespace block_app {
         Inventory::Inventory() {}
 
         void Inventory::Draw() const {
-            vec2 top_left_corner_ = vec2(50, 725);
-            vec2 bottom_right_corner_ = vec2(900, 900);
+            vec2 top_left_corner_ = vec2(50, 680);
+            vec2 bottom_right_corner_ = vec2(950, 950);
             ci::Rectf pixel_bounding_box(top_left_corner_, bottom_right_corner_);
             ci::gl::color(ci::Color("white"));
             ci::gl::drawSolidRect(pixel_bounding_box);
         }
-
-
-
 
     }
 }

@@ -7,10 +7,10 @@ namespace block_app {
         BlockApp::BlockApp()
                 : grid_(glm::vec2(kMargin, kMargin - 100), kImageDimension, kWindowSize - 2 * kMargin, shading),
                 inventory_(),
-                block_(glm::vec2(100, 750), 4, 269),
-                block1_(glm::vec2(400, 750), 4, 269),
-                block2_(glm::vec2(700, 750), 4, 269),
-                emptyBlock_(glm::vec2(2000, 2000), 4, 269) {
+                block_(glm::vec2(100, 700), 4, 250),
+                block1_(glm::vec2(425, 700), 4, 250),
+                block2_(glm::vec2(750, 700), 4, 250),
+                emptyBlock_(glm::vec2(2000, 2000), 4, 250) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
             generateRandomBlocks();
         }
@@ -20,16 +20,21 @@ namespace block_app {
             ci::gl::clear(background_color);
             ci::gl::drawStringCentered(
                     "Score: " + std::to_string(grid_.returnScore()),
-                    glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("black"));
+                    glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("black"), ci::Font("Dina", 45));
 
             grid_.Draw();
+            if (grid_.CheckGame()) {
+                ci::gl::drawStringCentered(
+                        "You Lost!",
+                        glm::vec2(kWindowSize / 2, kWindowSize / 2), ci::Color("black"), ci::Font("Dina", 45));
+            }
             inventory_.Draw();
             if (countBlocksPlaced % 3 == 0 && countBlocksPlaced != 0) {
                 generateRandomBlocks();
                 countBlocksPlaced = 0;
-                block_ = core::Block(glm::vec2(100, 750), 4, 269);
-                block1_ = core::Block(glm::vec2(400, 750), 4, 269);
-                block2_ = core::Block(glm::vec2(700, 750), 4, 269);
+                block_ = core::Block(glm::vec2(100, 700), 4, 250);
+                block1_ = core::Block(glm::vec2(425, 700), 4, 250);
+                block2_ = core::Block(glm::vec2(750, 700), 4, 250);
             }
             block_.Draw(block1);
             block1_.Draw(block2);
@@ -40,7 +45,6 @@ namespace block_app {
         void BlockApp::mouseUp(ci::app::MouseEvent event) {
 
             if (clickedOn == 0) {
-
                 if (grid_.HandleBrush(event.getPos(), block1)) {
                     block_ = emptyBlock_;
                     countBlocksPlaced++;
@@ -87,11 +91,11 @@ namespace block_app {
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {
-            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 750)) <= 100) {
+            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 700)) <= 100) {
                 clickedOn = 0;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 750)) <= 100)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(425, 700)) <= 100)) {
                 clickedOn = 1;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(700, 750)) <= 100)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(750, 700)) <= 100)) {
                 clickedOn = 2;
             }
         }

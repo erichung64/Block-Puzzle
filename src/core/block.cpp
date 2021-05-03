@@ -55,8 +55,25 @@ void block_app::core::Block::Draw(int i) const {
     for (size_t row = 0; row < num_pixels_per_side_; ++row) {
         for (size_t col = 0; col < num_pixels_per_side_; ++col) {
             if (b.at(col + row * num_pixels_per_side_) == 'X') {
-                ci::gl::color(ci::Color("white"));
-                vec2 pixel_top_left = top_left_corner_ + vec2(col * pixel_side_length_,
+                if (i == 0) {
+                    ci::gl::color(ci::Color("red"));
+                } else if (i == 1) {
+                    ci::gl::color(ci::Color("yellow"));
+                } else if (i == 2) {
+                    ci::gl::color(ci::Color("green"));
+                } else if (i == 3) {
+                    ci::gl::color(ci::Color("blue"));
+                } else if (i == 4) {
+                    ci::gl::color(ci::Color("orange"));
+                } else if (i == 5) {
+                    ci::gl::color(ci::Color("red"));
+                } else if (i == 6) {
+                    ci::gl::color(ci::Color("purple"));
+                } else if (i == 7) {
+                    ci::gl::color(ci::Color("white"));
+                }
+
+                    vec2 pixel_top_left = top_left_corner_ + vec2(col * pixel_side_length_,
                                                               row * pixel_side_length_);
 
                 vec2 pixel_bottom_right =
