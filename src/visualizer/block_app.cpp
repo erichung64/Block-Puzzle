@@ -7,9 +7,9 @@ namespace block_app {
         BlockApp::BlockApp()
                 : grid_(glm::vec2(kMargin, kMargin - 100), kImageDimension, kWindowSize - 2 * kMargin, shading),
                 inventory_(),
-                block_(glm::vec2(150, 750), 4, 269),
+                block_(glm::vec2(100, 750), 4, 269),
                 block1_(glm::vec2(400, 750), 4, 269),
-                block2_(glm::vec2(650, 750), 4, 269),
+                block2_(glm::vec2(700, 750), 4, 269),
                 emptyBlock_(glm::vec2(2000, 2000), 4, 269) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
             generateRandomBlocks();
@@ -27,9 +27,9 @@ namespace block_app {
             if (countBlocksPlaced % 3 == 0 && countBlocksPlaced != 0) {
                 generateRandomBlocks();
                 countBlocksPlaced = 0;
-                block_ = core::Block(glm::vec2(150, 750), 4, 269);
+                block_ = core::Block(glm::vec2(100, 750), 4, 269);
                 block1_ = core::Block(glm::vec2(400, 750), 4, 269);
-                block2_ = core::Block(glm::vec2(650, 750), 4, 269);
+                block2_ = core::Block(glm::vec2(700, 750), 4, 269);
             }
             block_.Draw(block1);
             block1_.Draw(block2);
@@ -40,7 +40,7 @@ namespace block_app {
         void BlockApp::mouseUp(ci::app::MouseEvent event) {
 
             if (clickedOn == 0) {
-                grid_.HandleBrush(event.getPos(), block1);
+
                 if (grid_.HandleBrush(event.getPos(), block1)) {
                     block_ = emptyBlock_;
                     countBlocksPlaced++;
@@ -48,7 +48,6 @@ namespace block_app {
                 }
             }
             if (clickedOn == 1) {
-                grid_.HandleBrush(event.getPos(), block2);
                 if (grid_.HandleBrush(event.getPos(), block2)) {
                     block1_ = emptyBlock_;
                     countBlocksPlaced++;
@@ -57,7 +56,6 @@ namespace block_app {
 
             }
             if (clickedOn == 2) {
-                grid_.HandleBrush(event.getPos(), block3);
                 if (grid_.HandleBrush(event.getPos(), block3)) {
                     block2_ = emptyBlock_;
                     countBlocksPlaced++;
@@ -89,11 +87,11 @@ namespace block_app {
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {
-            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(150, 750)) <= 100) {
+            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 750)) <= 100) {
                 clickedOn = 0;
             } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 750)) <= 100)) {
                 clickedOn = 1;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(650, 750)) <= 100)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(700, 750)) <= 100)) {
                 clickedOn = 2;
             }
         }

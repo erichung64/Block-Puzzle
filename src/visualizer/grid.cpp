@@ -60,8 +60,16 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
-                            shading_[coordinates] = true;
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row, col + 2}]) {
+                                return false;
+                            } else if (shading_[{row, col + 3}]) {
+                                return false;
+                            }
+                            shading_[{row, col}] = true;
                             shading_[{row, col + 1}] = true;
                             shading_[{row, col + 2}] = true;
                             shading_[{row, col + 3}] = true;
@@ -75,8 +83,16 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
-                            shading_[coordinates] = true;
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 1}]) {
+                                return false;
+                            }
+                            shading_[{row, col}] = true;
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
@@ -90,7 +106,15 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
+                            if (shading_[{row, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 2}]) {
+                                return false;
+                            }
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
@@ -105,7 +129,13 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
+                            if (shading_[{row, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 1}]) {
+                                return false;
+                            }
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
@@ -119,7 +149,13 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            }
                             shading_[{row, col}] = true;
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
@@ -133,7 +169,15 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            } else if (shading_[{row + 2, col}]) {
+                                return false;
+                            } else if (shading_[{row + 3, col}]) {
+                                return false;
+                            }
                             shading_[{row, col}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 2, col}] = true;
@@ -148,7 +192,15 @@ namespace block_app {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
                         vec2 pixel_center = {col + 0.5, row + 0.5};
                         if (glm::distance(brush_sketchpad_coords, pixel_center) <= .5) {
-                            std::vector<size_t> coordinates = {row, col};
+                            if (shading_[{row, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 1}]) {
+                                return false;
+                            } else if (shading_[{row + 1, col + 2}]) {
+                                return false;
+                            }
                             shading_[{row, col}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;

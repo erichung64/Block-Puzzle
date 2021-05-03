@@ -11,8 +11,8 @@ namespace block_app {
         Inventory::Inventory() {}
 
         void Inventory::Draw() const {
-            vec2 top_left_corner_ = vec2(200, 750);
-            vec2 bottom_right_corner_ = vec2(800, 1050);
+            vec2 top_left_corner_ = vec2(50, 725);
+            vec2 bottom_right_corner_ = vec2(900, 900);
             ci::Rectf pixel_bounding_box(top_left_corner_, bottom_right_corner_);
             ci::gl::color(ci::Color("white"));
             ci::gl::drawSolidRect(pixel_bounding_box);
