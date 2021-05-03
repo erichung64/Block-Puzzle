@@ -10,12 +10,9 @@ namespace block_app {
                 block_(glm::vec2(150, 750), 4, 269),
                 block1_(glm::vec2(400, 750), 4, 269),
                 block2_(glm::vec2(650, 750), 4, 269),
-                block1(rand() % 6),
-                block2(rand() % 6),
-                block3(rand() % 6)
-                {
+                emptyBlock_(glm::vec2(2000, 2000), 4, 269) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
-
+            generateRandomBlocks();
         }
 
         void BlockApp::draw() {
@@ -24,24 +21,50 @@ namespace block_app {
             ci::gl::drawStringCentered(
                     "Score: " + std::to_string(grid_.returnScore()),
                     glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("black"));
+
             grid_.Draw();
             inventory_.Draw();
-
+            if (countBlocksPlaced % 3 == 0 && countBlocksPlaced != 0) {
+                generateRandomBlocks();
+                countBlocksPlaced = 0;
+                block_ = core::Block(glm::vec2(150, 750), 4, 269);
+                block1_ = core::Block(glm::vec2(400, 750), 4, 269);
+                block2_ = core::Block(glm::vec2(650, 750), 4, 269);
+            }
             block_.Draw(block1);
             block1_.Draw(block2);
             block2_.Draw(block3);
+
         }
 
         void BlockApp::mouseUp(ci::app::MouseEvent event) {
+
             if (clickedOn == 0) {
                 grid_.HandleBrush(event.getPos(), block1);
+                if (grid_.HandleBrush(event.getPos(), block1)) {
+                    block_ = emptyBlock_;
+                    countBlocksPlaced++;
+                    clickedOn = 3;
+                }
             }
             if (clickedOn == 1) {
                 grid_.HandleBrush(event.getPos(), block2);
+                if (grid_.HandleBrush(event.getPos(), block2)) {
+                    block1_ = emptyBlock_;
+                    countBlocksPlaced++;
+                    clickedOn = 3;
+                }
+
             }
             if (clickedOn == 2) {
                 grid_.HandleBrush(event.getPos(), block3);
+                if (grid_.HandleBrush(event.getPos(), block3)) {
+                    block2_ = emptyBlock_;
+                    countBlocksPlaced++;
+                    clickedOn = 3;
+                }
             }
+
         }
 
         void BlockApp::keyDown(ci::app::KeyEvent event) {
@@ -66,13 +89,19 @@ namespace block_app {
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {
-            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(150, 750)) <= 50) {
+            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(150, 750)) <= 100) {
                 clickedOn = 0;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 750)) <= 50)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 750)) <= 100)) {
                 clickedOn = 1;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(650, 750)) <= 50)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(650, 750)) <= 100)) {
                 clickedOn = 2;
             }
+        }
+
+        void BlockApp::generateRandomBlocks() {
+            block1 = rand() % 6;
+            block2 = rand() % 6;
+            block3 = rand() % 6;
         }
 
 

@@ -43,6 +43,11 @@ block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixel
     blocks[6].append("XX..");
     blocks[6].append(".X..");
     blocks[6].append("....");
+
+    blocks[7].append("....");
+    blocks[7].append("....");
+    blocks[7].append("....");
+    blocks[7].append("....");
 }
 
 void block_app::core::Block::Draw(int i) const {
@@ -70,4 +75,5 @@ void block_app::core::Block::Draw(int i) const {
 void block_app::core::Block::mouseDrag(ci::app::MouseEvent event) {
     top_left_corner_ = event.getPos();
 }
+
 

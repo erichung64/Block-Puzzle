@@ -19,22 +19,24 @@ namespace block_app {
             void mouseDrag(ci::app::MouseEvent event) override;
             void keyDown(ci::app::KeyEvent event) override;
             void mouseUp(ci::app::MouseEvent event) override;
+            void generateRandomBlocks();
 
             const double kWindowSize = 1000;
             const double kMargin = 200;
             const double kImageDimension = 8;
             std::map<std::vector<size_t>, bool> shading;
             int clickedOn;
+            int countBlocksPlaced = 0;
+            int block1;
+            int block2;
+            int block3;
         private:
             Grid grid_;
             Inventory inventory_;
             core::Block block_;
             core::Block block1_;
             core::Block block2_;
-
-            int block1;
-            int block2;
-            int block3;
+            core::Block emptyBlock_;
 
         };
 

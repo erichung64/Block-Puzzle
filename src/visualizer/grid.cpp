@@ -51,7 +51,7 @@ namespace block_app {
             CheckCol();
         }
 
-        void Grid::HandleBrush(const vec2& brush_screen_coords, int i) {
+        bool Grid::HandleBrush(const vec2& brush_screen_coords, int i) {
             vec2 brush_sketchpad_coords =
                     (brush_screen_coords - top_left_corner_) / (float)pixel_side_length_;
 
@@ -65,6 +65,7 @@ namespace block_app {
                             shading_[{row, col + 1}] = true;
                             shading_[{row, col + 2}] = true;
                             shading_[{row, col + 3}] = true;
+                            return true;
                         }
                     }
                 }
@@ -79,6 +80,7 @@ namespace block_app {
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
+                            return true;
                         }
                     }
                 }
@@ -93,6 +95,7 @@ namespace block_app {
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
                             shading_[{row + 1, col + 2}] = true;
+                            return true;
                         }
                     }
                 }
@@ -106,6 +109,7 @@ namespace block_app {
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
+                            return true;
                         }
                     }
                 }
@@ -119,6 +123,7 @@ namespace block_app {
                             shading_[{row, col}] = true;
                             shading_[{row, col + 1}] = true;
                             shading_[{row + 1, col}] = true;
+                            return true;
                         }
                     }
                 }
@@ -133,6 +138,7 @@ namespace block_app {
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 2, col}] = true;
                             shading_[{row + 3, col}] = true;
+                            return true;
                         }
                     }
                 }
@@ -147,10 +153,12 @@ namespace block_app {
                             shading_[{row + 1, col}] = true;
                             shading_[{row + 1, col + 1}] = true;
                             shading_[{row + 1, col + 2}] = true;
+                            return true;
                         }
                     }
                 }
             }
+            return false;
         }
         void Grid::Clear() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {
