@@ -19,7 +19,6 @@ namespace block_app {
             }
         }
 
-
         void Grid::Draw() {
             for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                 for (size_t col = 0; col < num_pixels_per_side_; ++col) {
