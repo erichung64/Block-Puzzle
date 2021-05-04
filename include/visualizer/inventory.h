@@ -1,6 +1,3 @@
-//
-// Created by eric on 4/25/21.
-//
 #pragma once
 
 #include <core/block.h>
@@ -16,9 +13,9 @@ namespace block_app {
             /**
              * Displays the inventory in the Cinder Application.
              */
-            void Draw() const;
+            static void Draw();
         private:
         };
-    }
-}
+    } // namespace visualizer
+} // namespace block_app
 

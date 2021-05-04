@@ -52,7 +52,7 @@ namespace block_app {
              * @param x             int to be checked
              * @return bool         true if x is in range
              */
-            bool inRange(int low, int high, int x);
+            static bool inRange(int low, int high, int x);
             /**
              * Resets the score of the game.
              */
@@ -71,6 +71,10 @@ namespace block_app {
             */
             void Clear();
             /**
+             * Adds a score bonus to the player if they clear multiple lines at the same time.
+             */
+            void ScoreMultiplier();
+            /**
              * Score of the game.
              */
             int score = 0;
@@ -82,6 +86,10 @@ namespace block_app {
              * Map that determines the shading of the grid.
              */
             std::map<std::vector<size_t>, bool> shading_;
+            /**
+             * Keeps track of number of lines cleared.
+             */
+            int numLinesCleared = 0;
         private:
             glm::vec2 top_left_corner_;
             double num_pixels_per_side_;

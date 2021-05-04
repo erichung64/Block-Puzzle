@@ -7,6 +7,8 @@
 #include "inventory.h"
 #include "core/block.h"
 #include <random>
+#include <core/block.h>
+
 namespace block_app {
 
     namespace visualizer {
@@ -77,5 +79,6 @@ namespace block_app {
     }  // namespace visualizer
 
 }  // namespace block_app
+
 
 

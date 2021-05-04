@@ -1,7 +1,3 @@
-//
-// Created by eric on 5/2/21.
-//
-
 #ifndef FINAL_PROJECT_BLOCK_H
 #define FINAL_PROJECT_BLOCK_H
 
@@ -39,9 +35,7 @@ namespace block_app {
             double pixel_side_length_;
             std::string blocks[10];
         };
-    }
-}
-
-
+    } // namespace core
+} // namespace block_app
 
 #endif //FINAL_PROJECT_BLOCK_H

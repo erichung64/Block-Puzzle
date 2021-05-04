@@ -122,4 +122,4 @@ namespace block_app {
 
     }  // namespace visualizer
 
-}  // namespace naivebayes
+}  // namespace block_app

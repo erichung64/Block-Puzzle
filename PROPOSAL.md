@@ -22,7 +22,7 @@ This project will be using Cinder to recreate the game of Block Puzzle.
     * Create loss condition
     * Add different colors, get creative with design
     * Add animations
-    * Save high scores
+
 
 
 

@@ -47,6 +47,7 @@ namespace block_app {
             }
             CheckRow();
             CheckCol();
+            ScoreMultiplier();
         }
 
         bool Grid::HandleBrush(const vec2& brush_screen_coords, int i) {
@@ -309,7 +310,7 @@ namespace block_app {
                         std::vector<size_t> coordinates = {row, r};
                         shading_[coordinates] = false;
                     }
-                    score = score + 10;
+                    numLinesCleared += 1;
                 }
             }
         }
@@ -328,7 +329,7 @@ namespace block_app {
                         std::vector<size_t> coordinates = {r, row};
                         shading_[coordinates] = false;
                     }
-                    score = score + 10;
+                    numLinesCleared += 1;
                 }
             }
         }
@@ -463,6 +464,15 @@ namespace block_app {
 
         void Grid::resetScore() {
             score = 0;
+        }
+
+        void Grid::ScoreMultiplier() {
+            if (numLinesCleared == 1) {
+                score = score + 10;
+            } else {
+                score = score + 15 * numLinesCleared;
+            }
+            numLinesCleared = 0;
         }
     }  // namespace visualizer
 
