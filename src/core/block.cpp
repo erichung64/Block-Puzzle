@@ -9,6 +9,7 @@ block_app::core::Block::Block(const glm::vec2& top_left_corner, double num_pixel
         : top_left_corner_(top_left_corner),
           num_pixels_per_side_(num_pixels_per_side),
           pixel_side_length_(sketchpad_size / num_pixels_per_side) {
+    //String array representing the different types of blocks.
     blocks[0].append("XXXX");
     blocks[0].append("....");
     blocks[0].append("....");

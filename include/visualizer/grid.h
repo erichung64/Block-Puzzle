@@ -13,7 +13,6 @@ namespace block_app {
         public:
             /**
              * Creates a grid.
-             * (Note that grid pixels are larger than screen pixels.)
              *
              * @param top_left_corner     the screen coordinates of the top left corner of
              *                            the grid
@@ -28,11 +27,35 @@ namespace block_app {
              * Displays the current state of the grid in the Cinder application.
              */
             void Draw();
+            /**
+             * Checks if a Row in the grid is filled.
+             */
             void CheckRow();
+            /**
+             * Checks if a Column in the grid is filled.
+             */
             void CheckCol();
+            /**
+             * Returns the score of the game.
+             * @return int score
+             */
             int returnScore();
+            /**
+             * Checks if a block can be placed in the grid. If not, the game is over and returns true.
+             * @return bool isGameOver
+             */
             bool CheckGame();
+            /**
+             * Checks if an integer x is within a range of numbers.
+             * @param low           lower bound
+             * @param high          upper bound
+             * @param x             int to be checked
+             * @return bool         true if x is in range
+             */
             bool inRange(int low, int high, int x);
+            /**
+             * Resets the score of the game.
+             */
             void resetScore();
             /**
             * Shades in the grid pixels whose centers are within brush_radius units
@@ -47,9 +70,17 @@ namespace block_app {
             * Set all of the sketchpad pixels to an unshaded state.
             */
             void Clear();
-
+            /**
+             * Score of the game.
+             */
             int score = 0;
+            /**
+             * Keeps track of which block has been clicked on. Integer corresponds to a type of block.
+             */
             int block = 0;
+            /**
+             * Map that determines the shading of the grid.
+             */
             std::map<std::vector<size_t>, bool> shading_;
         private:
             glm::vec2 top_left_corner_;

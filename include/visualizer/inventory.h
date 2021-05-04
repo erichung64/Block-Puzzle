@@ -13,7 +13,9 @@ namespace block_app {
     namespace visualizer {
         class Inventory {
         public:
-            Inventory();
+            /**
+             * Displays the inventory in the Cinder Application.
+             */
             void Draw() const;
         private:
         };
