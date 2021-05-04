@@ -417,10 +417,10 @@ namespace block_app {
             if (block == 6) {
                 for (size_t row = 0; row < num_pixels_per_side_; ++row) {
                     for (size_t col = 0; col < num_pixels_per_side_; ++col) {
-                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}] && !shading_[{row + 1, col + 2}]
+                        if (!shading_[{row, col}] && !shading_[{row + 1, col}] && !shading_[{row + 1, col + 1}] && !shading_[{row + 2, col + 1}]
                         && inRange(0, num_pixels_per_side_, col + 1)
                         && inRange(0, num_pixels_per_side_, row + 1)
-                        && inRange(0, num_pixels_per_side_, col + 2)) {
+                        && inRange(0, num_pixels_per_side_, row + 2)) {
                             isGameOver = false;
                         }
 

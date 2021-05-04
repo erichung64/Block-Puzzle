@@ -48,8 +48,8 @@ namespace block_app {
             */
             void Clear();
 
-            int score;
-            int block;
+            int score = 0;
+            int block = 0;
             std::map<std::vector<size_t>, bool> shading_;
         private:
             glm::vec2 top_left_corner_;

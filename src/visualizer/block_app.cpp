@@ -7,31 +7,32 @@ namespace block_app {
         BlockApp::BlockApp()
                 : grid_(glm::vec2(kMargin, kMargin - 100), kImageDimension, kWindowSize - 2 * kMargin),
                 inventory_(),
-                block_(glm::vec2(100, 700), 4, 250),
-                block1_(glm::vec2(400, 700), 4, 250),
+                block_(glm::vec2(80, 700), 4, 250),
+                block1_(glm::vec2(375, 700), 4, 250),
                 block2_(glm::vec2(700, 700), 4, 250),
                 emptyBlock_(glm::vec2(2000, 2000), 4, 250) {
-            ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
-            generateRandomBlocks();
 
         }
 
         void BlockApp::setup() {
-            auto img = loadImage( loadAsset("background.jpg"));
-            mTex = ci::gl::Texture2d::create( img );
+            ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
+            generateRandomBlocks();
         }
 
         void BlockApp::draw() {
-            ci::gl::clear();
-            ci::gl::draw( mTex );
+            ci::Color8u background_color(54, 128, 247);
+            ci::gl::clear(background_color);
             if (grid_.CheckGame()) {
                 ci::gl::drawStringCentered(
-                        "You Lost! Press Delete to Reset Score",
-                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat", 45));
+                        "You Lost!",
+                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat Bold", 45));
+                ci::gl::drawStringCentered(
+                        "Press delete to reset the game.",
+                        glm::vec2(kWindowSize / 2, (kMargin - 200) / 2), ci::Color("white"), ci::Font("Montserrat Bold", 20));
             } else {
                 ci::gl::drawStringCentered(
                         "Score: " + std::to_string(grid_.returnScore()),
-                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat", 45));
+                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat Bold", 45));
             }
 
             grid_.Draw();
@@ -40,8 +41,8 @@ namespace block_app {
             if (countBlocksPlaced % 3 == 0 && countBlocksPlaced != 0) {
                 generateRandomBlocks();
                 countBlocksPlaced = 0;
-                block_ = core::Block(glm::vec2(100, 700), 4, 250);
-                block1_ = core::Block(glm::vec2(400, 700), 4, 250);
+                block_ = core::Block(glm::vec2(80, 700), 4, 250);
+                block1_ = core::Block(glm::vec2(375, 700), 4, 250);
                 block2_ = core::Block(glm::vec2(700, 700), 4, 250);
             }
             block_.Draw(block1);
@@ -100,9 +101,9 @@ namespace block_app {
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {
-            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 700)) <= 300) {
+            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(80, 700)) <= 300) {
                 clickedOn = 0;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 700)) <= 300)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(375, 700)) <= 300)) {
                 clickedOn = 1;
             } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(700, 700)) <= 300)) {
                 clickedOn = 2;
@@ -110,9 +111,12 @@ namespace block_app {
         }
 
         void BlockApp::generateRandomBlocks() {
-            block1 = rand() % 9;
-            block2 = rand() % 9;
-            block3 = rand() % 9;
+            std::random_device rd;
+            std::mt19937 mt(rd());
+            std::uniform_int_distribution<int> dist(0, 8);
+            block1 = dist(mt);
+            block2 = dist(mt);
+            block3 = dist(mt);
         }
 
 

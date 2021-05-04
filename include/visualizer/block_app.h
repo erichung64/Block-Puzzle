@@ -6,6 +6,7 @@
 #include "grid.h"
 #include "inventory.h"
 #include "core/block.h"
+#include <random>
 namespace block_app {
 
     namespace visualizer {
@@ -30,7 +31,7 @@ namespace block_app {
             int block2;
             int block3;
 
-            ci::gl::Texture2dRef mTex;
+
         private:
             Grid grid_;
             Inventory inventory_;
