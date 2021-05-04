@@ -13,19 +13,25 @@ namespace block_app {
                 emptyBlock_(glm::vec2(2000, 2000), 4, 250) {
             ci::app::setWindowSize((int) kWindowSize, (int) kWindowSize);
             generateRandomBlocks();
+
+        }
+
+        void BlockApp::setup() {
+            auto img = loadImage( loadAsset("background.jpg"));
+            mTex = ci::gl::Texture2d::create( img );
         }
 
         void BlockApp::draw() {
-            ci::Color8u background_color(54, 128, 247);
-            ci::gl::clear(background_color);
+            ci::gl::clear();
+            ci::gl::draw( mTex );
             if (grid_.CheckGame()) {
                 ci::gl::drawStringCentered(
                         "You Lost! Press Delete to Reset Score",
-                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Dina", 45));
+                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat", 45));
             } else {
                 ci::gl::drawStringCentered(
                         "Score: " + std::to_string(grid_.returnScore()),
-                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Dina", 45));
+                        glm::vec2(kWindowSize / 2, (kMargin - 100) / 2), ci::Color("white"), ci::Font("Montserrat", 45));
             }
 
             grid_.Draw();
@@ -94,11 +100,11 @@ namespace block_app {
         }
 
         void BlockApp::mouseDown(ci::app::MouseEvent event) {
-            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 700)) <= 100) {
+            if (glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(100, 700)) <= 300) {
                 clickedOn = 0;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 700)) <= 100)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(400, 700)) <= 300)) {
                 clickedOn = 1;
-            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(700, 700)) <= 100)) {
+            } else if ((glm::distance(glm::vec2(event.getX(), event.getY()), glm::vec2(700, 700)) <= 300)) {
                 clickedOn = 2;
             }
         }

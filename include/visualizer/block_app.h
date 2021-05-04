@@ -13,7 +13,7 @@ namespace block_app {
         class BlockApp : public ci::app::App {
         public:
             BlockApp();
-
+            void setup() override;
             void draw() override;
             void mouseDown(ci::app::MouseEvent event) override;
             void mouseDrag(ci::app::MouseEvent event) override;
@@ -29,6 +29,8 @@ namespace block_app {
             int block1;
             int block2;
             int block3;
+
+            ci::gl::Texture2dRef mTex;
         private:
             Grid grid_;
             Inventory inventory_;
